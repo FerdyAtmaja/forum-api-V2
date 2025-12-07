@@ -49,6 +49,8 @@ describe('GetThreadUseCase', () => {
       .mockImplementation(() => Promise.resolve(expectedThread));
     mockCommentRepository.getCommentsByThreadId = jest.fn()
       .mockImplementation(() => Promise.resolve(expectedComments));
+    mockCommentRepository.getLikeCountByCommentId = jest.fn()
+      .mockImplementation(() => Promise.resolve(0));
     mockReplyRepository.getRepliesByCommentId = jest.fn()
       .mockImplementation(() => Promise.resolve(expectedReplies));
 
@@ -74,6 +76,7 @@ describe('GetThreadUseCase', () => {
           username: 'johndoe',
           date: '2021-08-08T07:22:33.555Z',
           content: 'sebuah comment',
+          likeCount: 0,
           replies: [
             {
               id: 'reply-123',
@@ -132,6 +135,8 @@ describe('GetThreadUseCase', () => {
       .mockImplementation(() => Promise.resolve(expectedThread));
     mockCommentRepository.getCommentsByThreadId = jest.fn()
       .mockImplementation(() => Promise.resolve(expectedComments));
+    mockCommentRepository.getLikeCountByCommentId = jest.fn()
+      .mockImplementation(() => Promise.resolve(0));
     mockReplyRepository.getRepliesByCommentId = jest.fn()
       .mockImplementation(() => Promise.resolve(expectedReplies));
 

@@ -143,4 +143,20 @@ describe('CommentRepositoryPostgres', () => {
       });
     });
   });
+
+  describe('getLikeCountByCommentId function', () => {
+    it('should return like count correctly', async () => {
+      const CommentLikesTableTestHelper = require('../../../../tests/CommentLikesTableTestHelper');
+      await UsersTableTestHelper.addUser({ id: 'user-comment-444' });
+      await ThreadsTableTestHelper.addThread({ id: 'thread-comment-444', owner: 'user-comment-444' });
+      await CommentsTableTestHelper.addComment({ id: 'comment-like-123', threadId: 'thread-comment-444', owner: 'user-comment-444' });
+      await CommentLikesTableTestHelper.addLike({ id: 'like-1', commentId: 'comment-like-123', owner: 'user-comment-444' });
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+
+      const likeCount = await commentRepositoryPostgres.getLikeCountByCommentId('comment-like-123');
+
+      expect(likeCount).toEqual(1);
+      await CommentLikesTableTestHelper.cleanTable();
+    });
+  });
 });

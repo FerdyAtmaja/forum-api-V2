@@ -14,6 +14,7 @@ class GetThreadUseCase {
 
     const processedComments = await Promise.all(comments.map(async (comment) => {
       const replies = await this._replyRepository.getRepliesByCommentId(comment.id);
+      const likeCount = await this._commentRepository.getLikeCountByCommentId(comment.id);
       const processedReplies = replies.map((reply) => ({
         id: reply.id,
         content: reply.is_delete ? '**balasan telah dihapus**' : reply.content,
@@ -26,6 +27,7 @@ class GetThreadUseCase {
         username: comment.username,
         date: comment.date,
         content: comment.is_delete ? '**komentar telah dihapus**' : comment.content,
+        likeCount,
         replies: processedReplies,
       };
     }));
