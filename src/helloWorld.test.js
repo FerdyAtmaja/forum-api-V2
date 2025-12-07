@@ -1,6 +1,6 @@
 describe('Hello World', () => {
   it('should return hello world', () => {
-    const { getHelloWorld } = require('../helloWorld');
+    const { getHelloWorld } = require('./helloWorld');
     
     const result = getHelloWorld();
     
