@@ -1,6 +1,7 @@
 const CommentsTableTestHelper = require('../../../../tests/CommentsTableTestHelper');
 const UsersTableTestHelper = require('../../../../tests/UsersTableTestHelper');
 const ThreadsTableTestHelper = require('../../../../tests/ThreadsTableTestHelper');
+const CommentLikesTableTestHelper = require('../../../../tests/CommentLikesTableTestHelper');
 const NotFoundError = require('../../../Commons/exceptions/NotFoundError');
 const AuthorizationError = require('../../../Commons/exceptions/AuthorizationError');
 const NewComment = require('../../../Domains/comments/entities/NewComment');
@@ -146,7 +147,6 @@ describe('CommentRepositoryPostgres', () => {
 
   describe('getLikeCountByCommentId function', () => {
     it('should return like count correctly', async () => {
-      const CommentLikesTableTestHelper = require('../../../../tests/CommentLikesTableTestHelper');
       await UsersTableTestHelper.addUser({ id: 'user-comment-444' });
       await ThreadsTableTestHelper.addThread({ id: 'thread-comment-444', owner: 'user-comment-444' });
       await CommentsTableTestHelper.addComment({ id: 'comment-like-123', threadId: 'thread-comment-444', owner: 'user-comment-444' });

@@ -38,8 +38,10 @@ describe('ToggleCommentLikeUseCase', () => {
 
     expect(mockThreadRepository.verifyThreadExists).toBeCalledWith(useCasePayload.threadId);
     expect(mockCommentRepository.verifyCommentExists).toBeCalledWith(useCasePayload.commentId);
-    expect(mockLikeRepository.verifyLikeExists).toBeCalledWith(useCasePayload.commentId, useCasePayload.userId);
-    expect(mockLikeRepository.addLike).toBeCalledWith(useCasePayload.commentId, useCasePayload.userId);
+    expect(mockLikeRepository.verifyLikeExists)
+      .toBeCalledWith(useCasePayload.commentId, useCasePayload.userId);
+    expect(mockLikeRepository.addLike)
+      .toBeCalledWith(useCasePayload.commentId, useCasePayload.userId);
   });
 
   it('should orchestrate the delete like action correctly', async () => {
@@ -76,7 +78,9 @@ describe('ToggleCommentLikeUseCase', () => {
 
     expect(mockThreadRepository.verifyThreadExists).toBeCalledWith(useCasePayload.threadId);
     expect(mockCommentRepository.verifyCommentExists).toBeCalledWith(useCasePayload.commentId);
-    expect(mockLikeRepository.verifyLikeExists).toBeCalledWith(useCasePayload.commentId, useCasePayload.userId);
-    expect(mockLikeRepository.deleteLike).toBeCalledWith(useCasePayload.commentId, useCasePayload.userId);
+    expect(mockLikeRepository.verifyLikeExists)
+      .toBeCalledWith(useCasePayload.commentId, useCasePayload.userId);
+    expect(mockLikeRepository.deleteLike)
+      .toBeCalledWith(useCasePayload.commentId, useCasePayload.userId);
   });
 });
